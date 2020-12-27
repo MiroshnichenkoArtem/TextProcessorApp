@@ -9,6 +9,8 @@ namespace TextProcessorApp.Interfaces
         ICollection<ISentenceElement> SentenceElements { get; }
         bool IsInterogative { get; }
         int WordsAmount { get; }
-      
+        public void ReplaceWordsWithSubstring(int length, string substring);
+
+
     }
 }

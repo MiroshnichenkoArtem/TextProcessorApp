@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using TextProcessorApp.Interfaces;
 using System.Linq;
+using TextProcessorApp.TextParsing;
 
 namespace TextProcessorApp.TextObjectModel
 {
@@ -59,5 +60,30 @@ namespace TextProcessorApp.TextObjectModel
 
             return stringBuilder.ToString();
         }
+        public void ReplaceWordsWithSubstring(int length, string substring)
+        {
+            TextParser textParser = new TextParser();
+            var newElements = SentenceElements.ToList();
+
+            string value = "";
+            foreach(var element in SentenceElements)
+            {
+                if(element is IWord && element.Chars.Length == length)
+                {
+                    var indexToReplace = newElements.IndexOf(element);
+                    newElements[indexToReplace].Chars = substring;
+                }
+                
+            }
+            foreach(var el in newElements)
+            {
+                value += el.ToString();
+            }
+
+            SentenceElements = textParser.Parse(value);
+
+
+        }
+
     }
 }

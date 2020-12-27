@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using TextProcessorApp.Interfaces;
 using TextProcessorApp.TextObjectModel;
 using TextProcessorApp.TextParsing;
@@ -20,10 +21,19 @@ namespace TextProcessorApp
             }
             Console.WriteLine(text);
             var textFormatting = new TextProcessor();
-             //textFormatting.GetUniqueWordsFromInterrogativeSentencesWithLength(text, 2);
-            Text text1 = textFormatting.DeleteWordsStartsWithVowel(text, 5);
-            Console.WriteLine(text1);
-          
+            //textFormatting.GetUniqueWordsFromInterrogativeSentencesWithLength(text, 2);
+            //Text text1 = textFormatting.DeleteWordsStartsWithVowel(text, 5);
+            //Console.WriteLine(text1);
+            foreach(var sent in text.Sentences)
+            {
+                sent.ReplaceWordsWithSubstring(5, "Changed");
+            }
+            Console.WriteLine(text);
+           // textFormatting.SortSentencesAscending(text);
+            //foreach(var sent in text.Sentences)
+            //{
+            //    Console.WriteLine(sent);
+            //}
            
         }
     }
